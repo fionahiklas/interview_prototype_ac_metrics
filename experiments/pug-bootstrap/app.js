@@ -18,7 +18,18 @@ app.use(function(req, res, next) {
 app.use(express.static(path.join(__dirname, "public")));
 
 app.get("/", function(req, res) {
-  res.render("default");
+  var locals = {
+      type: 'nav-default',
+      items: [
+          { href: '#', text: "NavOne" },
+          { href: '#', text: "NavTwo" },
+          { href: '#', text: "NavThree" },
+          { href: '#', text: "NavFour" },
+          { href: '#', text: "NavFive" },
+          { href: '#', text: "NavSix" }
+      ]
+  }
+  res.render("default", locals);
 });
 
 http.createServer(app).listen(app.get("port"), function() {
