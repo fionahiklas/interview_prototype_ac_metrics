@@ -11,7 +11,7 @@ Quick experiment using [pug]() for templating with
 * Install dependencies for the codebase using the following command
 
 ```
-
+npm install
 ```
 
 
