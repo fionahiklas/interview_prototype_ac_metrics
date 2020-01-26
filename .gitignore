@@ -1,0 +1,7 @@
+# Backup files
+*~
+*.bak
+
+# Emacs temp files
+\#*
+

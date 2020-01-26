@@ -33,6 +33,21 @@ provided by 3rd party frameworks and they don't impact on the AC device
 functionality nor show that integration.
 
 
+### How long does data need to be retained for?
+
+The display requirements seem to be for the past year, does the data need to be retained past that point?
+
+
+
+## Potential issues
+
+### Monolith or microservices
+
+If this is split into two apps then there needs to be some sync between storing 
+data for the device API and then displaying it with the web app.
+
+That might present a scalability issue as well as how to share storage
+
 
 
 
