@@ -2,9 +2,8 @@
   "name": "experiment-pug-bootstrap",
   "version": "0.0.1",
   "description": "Quick experiment to create a frontend using pug and bootstrap",
-  "main": "app.js",
   "scripts": {
-    "test": "mocha -R spec"
+    "start": "node app"
   },
   "repository": {
     "type": "git",

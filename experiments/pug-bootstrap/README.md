@@ -14,6 +14,14 @@ Quick experiment using [pug]() for templating with
 npm install
 ```
 
+* Start the server with the following command
+
+```
+npm start
+```
+
+* Visit the [test server URL](http://localhost:3000) in a browser
+
 
 
 ## References
