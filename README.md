@@ -3,21 +3,65 @@
 Theorem prototype exercise
 
 
+## Content
+
+This repo contains the following
+
+* This README.md - detailing design activities and top-level information
+* adminInterface - code and documentation for the admin web interface
+* design - design diagrams generated from Visual Paradigm
+* deviceApi - code and documentation for the device API service
+* experiments - code or other experiments to investigate ideas
+ 
+
+## Assumptions
+
+* The AC device only supports HTTP not SSL as this would be too complicated
+* The AC allows configuration of registration URL, data URL, and registration token
+* The web interface will use a hard-coded username/password for demonstration
+
+
+## Decisions
+
+### Using Ruby for the REST API
+
+Since this is familar and provides support for REST APIs and many other things.
+Need to consider event machine at some point for scalability but probably not
+for the POC since there shouldn't be any significant load on the apps.
+
+### Using node.js for the admin interface
+
+There is support for pug (aka JADE) templates that support the rapid 
+development of pages using Bootstrap code.
+
+### Using Docker for deployment
+
+Docker containers allow deployment of the application using 
+docker-compose or even Kubernetes and also isolate the services.
+
+
 ## Questions
 
 ### Is the device strictly push (HTTP client) only?
 
-This seems to be the case 
+This seems to be the case.  There is also no suggestion that HTTPS is supported 
+and in fact this may be too cumbersome so a HTTP-only approach with some 
+mechanism such as HMAC or is being assumed
 
 
 ### Are there any requirements on how the device authenticates with the API
 
-Does the AC device provide a way to enter URL and username/password?  What other details can be entered?  Secure keys?
+Does the AC device provide a way to enter URL and username/password?  
+What other details can be entered?  Secure keys?
+
+It seems that a predefined token is allow
 
 
 ### Is the device using HTTP or HTTPS
 
 Or for the sake of the POC are we simply looking at HTTP?
+Making the assumption that only HTTP is supported and needs some HMAC or
+similar mechanism
 
 
 ### Does the admin interface need to support other auth mechanisms?
@@ -32,22 +76,33 @@ For example, logging in/out, password recovery, inviting users, could be
 provided by 3rd party frameworks and they don't impact on the AC device 
 functionality nor show that integration.
 
+Using hard-coded username/password for the demo version of the web app
+
 
 ### How long does data need to be retained for?
 
-The display requirements seem to be for the past year, does the data need to be retained past that point?
+The display requirements seem to be for the past year, does the data need to be 
+retained past that point?
 
 
-
-## Potential issues
-
-### Monolith or microservices
+### Monolith or micro service architecture
 
 If this is split into two apps then there needs to be some sync between storing 
 data for the device API and then displaying it with the web app.
 
-That might present a scalability issue as well as how to share storage
+That might present a scalability issue as well as how to share storage.
 
+Created a card to look at storage.  Also split the application into two 
+micro services as this was natural and practical.
+
+
+### Admin interface UX/look and feel
+
+This can be simplified but functional.  There is no requirement for 
+perfectly finished pages so long as they don't look too ugly - clear and 
+concise is fine.
+
+### Do the AC devices support 
 
 
 

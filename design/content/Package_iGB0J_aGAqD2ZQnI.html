@@ -275,6 +275,47 @@ Children			</td>
       The AC unit will make a HTTP call with the token it obtained from 
       authenticating.
     </p>
+    <p style="margin-bottom:.0001pt;margin-left:0pt;margin-top:0pt;margin-right:0pt;">
+      &nbsp;
+    </p>
+    <p style="margin-bottom:.0001pt;margin-left:0pt;margin-top:0pt;margin-right:0pt;">
+      The data contains the following
+    </p>
+    <p style="margin-bottom:.0001pt;margin-left:0pt;margin-top:0pt;margin-right:0pt;">
+      &nbsp;&nbsp;- timestamp
+    </p>
+    <p style="margin-bottom:.0001pt;margin-left:0pt;margin-top:0pt;margin-right:0pt;">
+      &nbsp;&nbsp;- temperature (celsius)
+    </p>
+    <p style="margin-bottom:.0001pt;margin-left:0pt;margin-top:0pt;margin-right:0pt;">
+      &nbsp;&nbsp;- humidity
+    </p>
+    <p style="margin-bottom:.0001pt;margin-left:0pt;margin-top:0pt;margin-right:0pt;">
+      &nbsp;&nbsp;- CO level
+    </p>
+    <p style="margin-bottom:.0001pt;margin-left:0pt;margin-top:0pt;margin-right:0pt;">
+      &nbsp;&nbsp;- status
+    </p>
+    <p style="margin-bottom:.0001pt;margin-left:0pt;margin-top:0pt;margin-right:0pt;">
+      &nbsp;
+    </p>
+    <p style="margin-bottom:.0001pt;margin-left:0pt;margin-top:0pt;margin-right:0pt;">
+      It was confirmed that the AC units have real time clocks hence the 
+      timestamp.
+    </p>
+    <p style="margin-bottom:.0001pt;margin-left:0pt;margin-top:0pt;margin-right:0pt;">
+      &nbsp;
+    </p>
+    <p style="margin-bottom:.0001pt;margin-left:0pt;margin-top:0pt;margin-right:0pt;">
+      It's also expected that they will take a snapshot of data every 1 minute.
+    </p>
+    <p style="margin-bottom:.0001pt;margin-left:0pt;margin-top:0pt;margin-right:0pt;">
+      &nbsp;
+    </p>
+    <p style="margin-bottom:.0001pt;margin-left:0pt;margin-top:0pt;margin-right:0pt;">
+      The data will be sent as an array of 1 element which then maintains 
+      consistency with the bulk upload
+    </p>
   </body></span>			</td>
 		</tr>
 		<tr class="TableRow1">
@@ -297,6 +338,13 @@ Children			</td>
       Bulk data is simply accumulated from when the AC unit was unable to 
       connect to the device API. &nbsp;Rather than 1 item in the call there could 
       be up to 500 (approx 8hours worth of data).
+    </p>
+    <p style="margin-bottom:.0001pt;margin-left:0pt;margin-top:0pt;margin-right:0pt;">
+      &nbsp;
+    </p>
+    <p style="margin-bottom:.0001pt;margin-left:0pt;margin-top:0pt;margin-right:0pt;">
+      The array of data sent to for periodic updates will now include more 
+      than one entry
     </p>
   </body></span>			</td>
 		</tr>
