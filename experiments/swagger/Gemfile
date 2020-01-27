@@ -1,0 +1,12 @@
+source 'http://rubygems.org'
+
+ruby '2.6.3'
+
+gem 'rake'
+gem 'rack'
+gem 'thin'
+gem 'sinatra'
+gem 'sinatra-cors'
+gem 'swagger-exposer'
+gem 'eventmachine'
+
