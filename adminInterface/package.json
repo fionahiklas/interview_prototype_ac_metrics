@@ -1,0 +1,23 @@
+{
+  "name": "experiment-pug-bootstrap",
+  "version": "0.0.1",
+  "description": "Quick experiment to create a frontend using pug and bootstrap",
+  "scripts": {
+    "start": "node app"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fionahiklas/theorem_prototype_fiona.git"
+  },
+  "keywords": [],
+  "author": "Fiona Bianchi",
+  "contributors": [],
+  "license": "Apache",
+  "bugs": {},
+  "devDependencies": {},
+  "dependencies": {
+    "pug": "2.0.4",
+    "express": "4.17.1",
+    "pug-bootstrap": "0.0.16"
+  }
+}

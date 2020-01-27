@@ -5,3 +5,9 @@
 # Emacs temp files
 \#*
 
+# IntelliJ projects
+.idea
+*.iml
+
+# MacOS junk
+.DS_Store
