@@ -9,13 +9,16 @@
 
 ### RACK_ENV
 
-This is a standard variable used to communicate the environment in which a RACK application is running.  The values this variable can take the following values
+This is a standard variable used to communicate the environment in which a RACK 
+application is running.  The values this variable can take the following values
 
 * development
 * test
 * production
 
-For normal development work locally the value of this variable is obviously "development".  When running tests however it has been set to "test" in the Rakefile to force that configuration.
+For normal development work locally the value of this variable is obviously 
+"development".  When running tests however it has been set to "test" in the 
+Rakefile to force that configuration.
 
 ## Running
 
