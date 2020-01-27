@@ -12,6 +12,7 @@ This repo contains the following
 * design - design diagrams generated from Visual Paradigm
 * deviceApi - code and documentation for the device API service
 * experiments - code or other experiments to investigate ideas
+* images - screenshots and similar for design and other uses
  
 ## Design
 
