@@ -13,6 +13,13 @@ This repo contains the following
 * deviceApi - code and documentation for the device API service
 * experiments - code or other experiments to investigate ideas
  
+## Design
+
+The design document for the system has been exported as HTML from 
+[Visual Paradigm](https://www.visual-paradigm.com) and can be viewed by 
+opening the `index.html` file under the `design` folder in a browser, from 
+there you can navigate around the models and diagrams.
+ 
 
 ## Assumptions
 
