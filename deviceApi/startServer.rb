@@ -1,7 +1,7 @@
 $:.unshift File.expand_path("./lib", File.dirname(__FILE__))
 
 require 'thin'
-require 'swagger-test-api'
+require 'device-api'
 
 
 def startServer(application)
@@ -11,7 +11,7 @@ def startServer(application)
 end
 
 
-application = SwaggerTest::Root.new
+application = ACDeviceSystem::Root.new
 
 startServer(application)
 

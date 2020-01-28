@@ -64,7 +64,7 @@ In the field for the Swagger URL paste in `http://localhost:9292/swagger_doc`
 
 ### Grape
 
-* [Grape]
+* [Grape](https://github.com/ruby-grape/grape)
 * [Grape swagger](https://github.com/ruby-grape/grape-swagger)
 * [Swagger UI usage](https://github.com/swagger-api/swagger-ui/blob/master/docs/usage/installation.md)
 * [Swagger UI Docker](https://github.com/swagger-api/swagger-ui/blob/master/docs/usage/configuration.md#docker)
