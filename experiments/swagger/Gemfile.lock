@@ -51,6 +51,8 @@ GEM
     rack (2.1.2)
     rack-accept (0.4.5)
       rack (>= 0.4)
+    rack-cors (1.1.1)
+      rack (>= 2.0.0)
     rake (13.0.1)
     ruby2_keywords (0.0.2)
     thin (1.7.2)
@@ -70,6 +72,7 @@ DEPENDENCIES
   grape
   grape-swagger
   rack
+  rack-cors
   rake
   thin
 

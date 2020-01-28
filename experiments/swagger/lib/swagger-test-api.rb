@@ -2,6 +2,7 @@ require 'eventmachine'
 require 'thin'
 require 'grape'
 require 'grape-swagger'
+require 'rack/cors'
 
 require 'util/lumber'
 
@@ -33,6 +34,16 @@ module SwaggerTest
   end
 
   class Root < Grape::API
+
+    # Some of the docs say this is necessary.  Difficult to test locally
+    # seems to work without it.
+    # use Rack::Cors do
+    #   allow do
+    #     origins '*'
+    #     resource '/swagger_doc', headers: :any, methods: [ :get, :options ]
+    #   end
+    # end
+
     format :json
     mount Server
     add_swagger_documentation

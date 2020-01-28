@@ -44,12 +44,30 @@ The swagger file should be available here
 curl http://localhost:9292/swagger_doc
 ```
 
+### Using swagger-ui
+
+Start swagger-ui in a docker container
+
+```
+docker run -p 8080:8080 swaggerapi/swagger-ui
+```
+
+Annoyingly you can only override the URL that the UI uses for swagger JSON with 
+a file, there appears to be no way to provide a reference to a site.
+
+In a browser open `http://localhost:8080`
+
+In the field for the Swagger URL paste in `http://localhost:9292/swagger_doc`
+
+
 ## References
 
 ### Grape
 
 * [Grape]
 * [Grape swagger](https://github.com/ruby-grape/grape-swagger)
+* [Swagger UI usage](https://github.com/swagger-api/swagger-ui/blob/master/docs/usage/installation.md)
+* [Swagger UI Docker](https://github.com/swagger-api/swagger-ui/blob/master/docs/usage/configuration.md#docker)
 
 
 ### Old
@@ -62,8 +80,6 @@ not worth pursuing.
 * [Sinatra swagger exposer github](https://github.com/archiloque/sinatra-swagger-exposer)
 * [Sinatra cross origin github](https://github.com/britg/sinatra-cross_origin)
 * [Cross origin example](https://github.com/archiloque/sinatra-swagger-exposer/tree/master/example)
-* [Swagger UI usage](https://github.com/swagger-api/swagger-ui/blob/master/docs/usage/installation.md)
-* [Swagger UI Docker](https://github.com/swagger-api/swagger-ui/blob/master/docs/usage/configuration.md#docker)
 
 
 
