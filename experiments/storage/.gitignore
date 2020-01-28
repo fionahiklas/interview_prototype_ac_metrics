@@ -1,0 +1,5 @@
+.bundle
+*.png
+*.rrd
+vendor
+*.rrd*
