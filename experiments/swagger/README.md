@@ -24,12 +24,12 @@ export PATH=~/.gem/ruby/2.6.0/bin:$PATH
 bundle install --path ~/.gem
 ```
 
-### Start using rack
+### Start server
 
 Run the following command to start the server
 
 ```
-rackup
+ruby startServer.rb
 ```
 
 You can then access the status endpoint using the following curl command
@@ -38,8 +38,25 @@ You can then access the status endpoint using the following curl command
 curl http://localhost:9292/status
 ```
 
+The swagger file should be available here 
+
+```
+curl http://localhost:9292/swagger_doc
+```
 
 ## References
+
+### Grape
+
+* [Grape]
+* [Grape swagger](https://github.com/ruby-grape/grape-swagger)
+
+
+### Old
+
+Originally attempted to use Sinatra and swagger exposer but versioning was a problem and 
+other errors occurred.  Seems that sinatra and the swagger support is out of date and 
+not worth pursuing.
 
 * [Sinatra swagger exposer gem](https://rubygems.org/gems/sinatra-swagger-exposer)
 * [Sinatra swagger exposer github](https://github.com/archiloque/sinatra-swagger-exposer)
