@@ -1,0 +1,584 @@
+<html>
+<head>
+	<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<link rel="stylesheet" href="report.css" type="text/css"/>
+	<title>Component Diagram - AC System POC Components</title>
+	<script type="text/javascript" src="report.js"></script>
+	<script type="text/javascript" src="link_popup.js"></script>
+	<script type="text/javascript" src="tooltip.js"></script>
+</head>
+<body style="margin-left: 10px; margin-right: 10px; margin-top: 10px; margin-bottom: 10px;" onload="initPage();initDiagram();initGridDiagram();">
+	<div style="position:absolute; z-index:2; visibility:hidden;border-top: 2px #FF0000 solid;" id="spotlight_top">
+	</div>
+	<div style="position:absolute; z-index:2; visibility:hidden;border-top: 2px #FF0000 solid;" id="spotlight_bottom">
+	</div>
+	<div style="position:absolute; z-index:2; visibility:hidden;border-left: 2px #FF0000 solid;" id="spotlight_left">
+	</div>
+	<div style="position:absolute; z-index:2; visibility:hidden;border-left: 2px #FF0000 solid;" id="spotlight_right">
+	</div>
+	<canvas width="100" style="position:absolute; z-index:2; visibility:hidden" id="spotlight_c" height="100">
+	</canvas>
+	<div style="position:absolute; width:100px; height:100px; z-index:1; visibility:hidden" id="spotLightResourcesTop">
+		<table border="0" cellpadding="0" cellspacing="0">
+			<tr>
+				<td>
+<a href="#top"><img style="border:none" src="../images/icons/BackToTop.gif" alt="Back to top"/></a>				</td>
+				<td>
+<a href="javascript:clearSpotLightFromOpenSpecButton();"><img style="border:none" src="../images/icons/OpenSpecification.gif" alt="Open specification"/></a>				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute; width:100px; height:100px; z-index:1; visibility:hidden" id="spotLightResourcesRight">
+		<table border="0" cellpadding="0" cellspacing="0">
+			<tr>
+				<td>
+<a href="#top"><img style="border:none" src="../images/icons/BackToTop.gif" alt="Back to top"/></a>				</td>
+			</tr>
+			<tr>
+				<td>
+<a href="javascript:clearSpotLightFromOpenSpecButton();"><img style="border:none" src="../images/icons/OpenSpecification.gif" alt="Open specification"/></a>				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute;z-index:4;visibility:hidden" id="linkPopupMenuLayer">
+		<table border="0" width="100%" style="border-style:solid; border-width:1px; border-color:#000000; background:#FFFFFF; width:250px" id="linkPopupMenuTable">
+		</table>
+	</div>
+	<div style="position:absolute; z-index:1; visibility:hidden; " id="referenceIconLayer">
+		<table border="0" cellpadding="3" cellspacing="0" style="font-size:1;">
+			<tr>
+				<td>
+					<img src="../images/icons/Ref.gif" style="border:none" onclick="movePopupPositionToReferenceIconPosition();resetPopupForReference();switchPopupShowHideStatus();" />				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute; z-index:1; visibility:hidden; " id="subdiagramIconLayer">
+		<table border="0" cellpadding="3" cellspacing="0" style="font-size:1;">
+			<tr>
+				<td>
+					<img src="../images/icons/Subdiagram.gif" style="border:none" onclick="movePopupPositionToSubdiagramIconPosition();resetPopupForSubdiagram();switchPopupShowHideStatus();" />				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute; z-index:1; visibility:hidden; " id="transitorIconLayer">
+		<table border="0" cellpadding="3" cellspacing="0" style="font-size:1;">
+			<tr>
+				<td>
+					<img src="../images/icons/Transitor.gif" style="border:none" onclick="movePopupPositionToTransitorIconPosition();resetPopupForTransitor();switchPopupShowHideStatus();" />				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute; z-index:1; visibility:hidden; " id="documentationIconLayer">
+		<table border="0" cellpadding="3" cellspacing="0" style="font-size:1;">
+			<tr>
+				<td>
+					<img src="../images/icons/Documentation.png" style="border:none" />				</td>
+			</tr>
+		</table>
+	</div>
+	<div class="HeaderText">
+		Theorem Prototype Exercise	</div>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="HeaderLine1">
+			</td>
+		</tr>
+		<tr>
+			<td class="HeaderLine2">
+			</td>
+		</tr>
+		<tr>
+			<td class="HeaderLine3">
+			</td>
+		</tr>
+	</table>
+	<div style="position:absolute; z-index:21; visibility:hidden" id="referencedBys">
+		<table border="0" width="100%" style="border-style:solid; border-width:1px; border-color:#000000; background:#FFFFFF; width:250px" id="referencedBysTable">
+		</table>
+	</div>
+	<div style="position:absolute; z-index:21; visibility:hidden" id="vplink">
+		<table border="1" cellpadding="0" cellspacing="0" bordercolor="#A9BFD3">
+			<tr>
+				<td>
+					<table border="0" cellpadding="0" width="100%" cellspacing="0">
+						<tr style="background:#DDDDDD">
+							<td style="font-size: 12px;" align="left">
+								<select onchange="vpLinkToggleName()" id="vplink-linkType">
+	<option value="Project Link">Project Link</option>
+	<option value="Page URL">Page URL</option>
+</select>
+							</td>
+							<td style="font-size: 12px;" align="right">
+								<input onclick="javascript: vpLinkToggleName()" id="vplink-checkbox" type="checkbox" />
+								<label for="vplink-checkbox">with Name</label>							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<textarea id="vplink-text" style="width: 348px; height: 60px; border-color: #7EADD9; outline: none;"></textarea>				</td>
+			</tr>
+		</table>
+	</div>
+	<p class="PageTitle">
+		<span id="PageTitleText">
+			Component Diagram - AC System POC Components		</span>
+<a onclick="javascript: showVpLink('TheoremPrototypeExercise.vpp://diagram/BFVkt_aGAqD2ZRhY', 'AC System POC Components\nTheoremPrototypeExercise.vpp://diagram/BFVkt_aGAqD2ZRhY', 'AC System POC Components', this); return false;" style="padding-left: 16px; font-size: 12px" href="#"><img src="../images/icons/link.png" border="0"> link</a>	</p>
+	<div style="position: relative; padding-bottom: 20px;">
+		<table border="0" cellpadding="0" width="100%" cellspacing="0" style="position: absolute; top: 0; left: 0; z-index: 20;" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),hideLinkPopup(),hideReferencedBys();">
+			<tr>
+				<td>
+<span class="TableContent">Jump to:</span>					<select id="SelectShape" class="TableContent" onChange="scrollWin('diagram', this.value);hideLinkPopup();showSpotLight('diagram', this.value)">
+<option value="">Please select a model element</option>
+<option value="shape|562.0|441.0|130.0|62.0|Component_O1Tkt_aGAqD2ZRhl.html|Component_O1Tkt_aGAqD2ZRhl.html|S1Tkt_aGAqD2ZRhk" id="optionS1Tkt_aGAqD2ZRhk">RRD Files : Component</option>
+<option value="shape|337.0|258.0|133.0|82.0|Component_gsgUt_aGAqD2ZRhu.html|Component_gsgUt_aGAqD2ZRhu.html|gsgUt_aGAqD2ZRht" id="optiongsgUt_aGAqD2ZRht">Node JS Frontend : Component</option>
+<option value="shape|867.0|268.0|130.0|72.0|Component_xAL0t_aGAqD2ZRix.html|Component_xAL0t_aGAqD2ZRix.html|xAL0t_aGAqD2ZRiw" id="optionxAL0t_aGAqD2ZRiw">Ruby Device API : Component</option>
+<option value="shape|2.0|8.0|1086.0|583.0|Component_HJSMt_aGAqD2ZRjj.html|Component_HJSMt_aGAqD2ZRjj.html|HJSMt_aGAqD2ZRji" id="optionHJSMt_aGAqD2ZRji">AC System : Component</option>
+<option value="shape|411.0|2.0|12.0|12.0|Port_HJqMt_aGAqD2ZRj0.html|Port_HJqMt_aGAqD2ZRj0.html|PJqMt_aGAqD2ZRj2" id="optionPJqMt_aGAqD2ZRj2">Admin pages : Port</option>
+<option value="shape|936.0|2.0|12.0|12.0|Port__WJMt_aGAqD2ZRkU.html|Port__WJMt_aGAqD2ZRkU.html|xWJMt_aGAqD2ZRkW" id="optionxWJMt_aGAqD2ZRkW">Device API : Port</option>
+<option value="shape|756.0|518.0|283.0|62.0|NOTE_WxVMt_aGAqD2ZRkg.html|NOTE_WxVMt_aGAqD2ZRkg.html|axVMt_aGAqD2ZRkf" id="optionaxVMt_aGAqD2ZRkf">Unnamed Note : Note</option>
+<option value="shape|562.0|295.0|130.0|40.0|Component_l8ast_aGAqD2ZRlP.html|Component_l8ast_aGAqD2ZRlP.html|l8ast_aGAqD2ZRlO" id="optionl8ast_aGAqD2ZRlO">Redis Store : Component</option>
+<option value="shape|636.0|40.0|231.0|183.0|NOTE_StDst_aGAqD2ZRmn.html|NOTE_StDst_aGAqD2ZRmn.html|StDst_aGAqD2ZRmm" id="optionStDst_aGAqD2ZRmm">Unnamed Note : Note</option>
+<option value="shape|319.0|2.0|12.0|12.0|Port_rvlqt_aGAqD2ZRnY.html|Port_rvlqt_aGAqD2ZRnY.html|nvlqt_aGAqD2ZRna" id="optionnvlqt_aGAqD2ZRna">Notifications : Port</option>
+<option value="shape|28.0|79.0|262.0|216.0|NOTE_lY_qt_aGAqD2ZRox.html|NOTE_lY_qt_aGAqD2ZRox.html|lY_qt_aGAqD2ZRow" id="optionlY_qt_aGAqD2ZRow">Unnamed Note : Note</option>
+</select>				</td>
+			</tr>
+		</table>
+		<table border="0" cellpadding="0" width="100%" cellspacing="0" style="position: relative; top: 24;">
+			<tr>
+				<td>
+					<img id="diagram" src="../images/AC_System_POC_Components.png" usemap="#diagram_map" class="Image" width="1092" height="595"/>
+					<map name="diagram_map">
+<area imageId="diagram" coords="692.0, 495.59494, 692.0, 503.0, 683.7143, 503.0, 683.0, 508.0, 756.0, 524.63293, 756.0, 518.0, 763.1429, 518.0, 764.0, 512.0, 692.0, 495.59494" coords2="692.0, 495.59494, 692.0, 503.0, 683.7143, 503.0, 683.0, 508.0, 756.0, 524.63293, 756.0, 518.0, 763.1429, 518.0, 764.0, 512.0, 692.0, 495.59494" shape="poly" alt=":Anchor" id="areadiagram_map_44wst_aGAqD2ZRkv_default" href="Anchor_fYwst_aGAqD2ZRku.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="470.0, 330.08737, 470.0, 340.0, 459.91965, 340.0, 562.0, 451.0, 562.0, 441.0, 572.0, 441.0, 470.0, 330.08737" coords2="470.0, 330.08737, 470.0, 340.0, 459.91965, 340.0, 562.0, 451.0, 562.0, 441.0, 572.0, 441.0, 470.0, 330.08737" shape="poly" alt="read AC unit data:Dependency" id="areadiagram_map_3rost_aGAqD2ZRk4_default" href="Dependency_rrost_aGAqD2ZRk3.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="867.0, 330.17023, 681.0, 439.0, 682.4545, 441.0, 692.0, 441.0, 692.0, 448.2447, 877.0, 340.0, 867.0, 340.0, 867.0, 330.17023" coords2="867.0, 330.17023, 681.0, 439.0, 682.4545, 441.0, 692.0, 441.0, 692.0, 448.2447, 877.0, 340.0, 867.0, 340.0, 867.0, 330.17023" shape="poly" alt="write AC unit data:Dependency" id="areadiagram_map_g44st_aGAqD2ZRk8_default" href="Dependency_vY4st_aGAqD2ZRk7.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="406.0, 5.0, 406.0, 258.0, 420.0, 258.0, 420.0, 14.0, 411.0, 14.0, 411.0, 5.0" coords2="406.0, 5.0, 406.0, 258.0, 420.0, 258.0, 420.0, 14.0, 411.0, 14.0, 411.0, 5.0" shape="poly" alt=":Dependency" id="areadiagram_map_BeCst_aGAqD2ZRlE_default" href="Dependency_6eCst_aGAqD2ZRlD.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="929.0, 5.0, 929.0, 268.0, 943.0, 268.0, 943.0, 14.0, 936.0, 14.0, 936.0, 5.0" coords2="929.0, 5.0, 929.0, 268.0, 943.0, 268.0, 943.0, 14.0, 936.0, 14.0, 936.0, 5.0" shape="poly" alt=":Dependency" id="areadiagram_map_ODist_aGAqD2ZRlI_default" href="Dependency_aDist_aGAqD2ZRlH.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="470.0, 305.0, 470.0, 319.0, 562.0, 319.0, 562.0, 305.0" coords2="470.0, 305.0, 470.0, 319.0, 562.0, 319.0, 562.0, 305.0" shape="poly" alt=":Dependency" id="areadiagram_map_7txst_aGAqD2ZRmD_default" href="Dependency_dtxst_aGAqD2ZRmC.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="692.0, 305.0, 692.0, 319.0, 867.0, 319.0, 867.0, 305.0" coords2="692.0, 305.0, 692.0, 319.0, 867.0, 319.0, 867.0, 305.0" shape="poly" alt=":Dependency" id="areadiagram_map_A1Jst_aGAqD2ZRmH_default" href="Dependency_PVJst_aGAqD2ZRmG.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="645.0, 223.0, 645.0, 295.0, 659.0, 295.0, 659.0, 223.0" coords2="645.0, 223.0, 645.0, 295.0, 659.0, 295.0, 659.0, 223.0" shape="poly" alt=":Anchor" id="areadiagram_map_37mqt_aGAqD2ZRm7_default" href="Anchor_T7mqt_aGAqD2ZRm6.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="331.0, 5.0, 331.0, 14.0, 324.20612, 14.0, 330.0, 267.0, 337.0, 267.0, 337.0, 258.0, 343.79388, 258.0, 338.0, 5.0" coords2="331.0, 5.0, 331.0, 14.0, 324.20612, 14.0, 330.0, 267.0, 337.0, 267.0, 337.0, 258.0, 343.79388, 258.0, 338.0, 5.0" shape="poly" alt=":Dependency" id="areadiagram_map_2Htqt_aGAqD2ZRnk_default" href="Dependency_GHtqt_aGAqD2ZRnj.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="316.0, 3.0, 281.7073, 79.0, 290.0, 79.0, 290.0, 89.23077, 292.0, 90.0, 326.2927, 14.0, 319.0, 14.0, 319.0, 4.1538463, 316.0, 3.0" coords2="316.0, 3.0, 281.7073, 79.0, 290.0, 79.0, 290.0, 89.23077, 292.0, 90.0, 326.2927, 14.0, 319.0, 14.0, 319.0, 4.1538463, 316.0, 3.0" shape="poly" alt=":Anchor" id="areadiagram_map_KY_at_aGAqD2ZRpL_default" href="Anchor_CY_at_aGAqD2ZRpK.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" docContent="&amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body style=&amp;quot;color:#000000;font-weight:normal;font-size:12px;margin-left:0;font-family:Dialog;margin-right:0;&amp;quot;&amp;gt;
+    &amp;lt;p style=&amp;quot;margin-bottom:.0001pt;margin-left:0pt;margin-top:0pt;margin-right:0pt;&amp;quot;&amp;gt;
+      Use websockets for real time alerts. &amp;nbsp;When scaling the notifications 
+      will rely on the alerts being sent to all nodes using pub/sub.
+    &amp;lt;/p&amp;gt;
+    &amp;lt;p style=&amp;quot;margin-bottom:.0001pt;margin-left:0pt;margin-top:0pt;margin-right:0pt;&amp;quot;&amp;gt;
+      &amp;nbsp;
+    &amp;lt;/p&amp;gt;
+    &amp;lt;p style=&amp;quot;margin-bottom:.0001pt;margin-left:0pt;margin-top:0pt;margin-right:0pt;&amp;quot;&amp;gt;
+      The client websocket connection also needs some form of keep-alive 
+      message so that fail-over to other nodes can be carried out by 
+      reconnecting if the current host goes down.
+    &amp;lt;/p&amp;gt;
+    &amp;lt;p style=&amp;quot;margin-bottom:.0001pt;margin-left:0pt;margin-top:0pt;margin-right:0pt;&amp;quot;&amp;gt;
+      &amp;nbsp;
+    &amp;lt;/p&amp;gt;
+    &amp;lt;p style=&amp;quot;margin-bottom:.0001pt;margin-left:0pt;margin-top:0pt;margin-right:0pt;&amp;quot;&amp;gt;
+      The websocket connection does pin the client to a given node though
+    &amp;lt;/p&amp;gt;
+  &amp;lt;/body&amp;gt;" coords="28, 79, 290, 295" coords2="28, 79, 290, 295" shape="rect" alt="Use websockets for real time alerts.  When scaling the notifications will rely on the alerts being sent to all nodes using pub/sub.
+
+The client websocket connection also needs some form of keep-alive message so that fail-over to other nodes can be carried out by reconnecting if the current host goes down.
+
+The websocket connection does pin the client to a given node though:Note" id="areadiagram_map_lY_qt_aGAqD2ZRow_default" href="NOTE_lY_qt_aGAqD2ZRox.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" coords="319, 2, 331, 14" coords2="319, 2, 331, 14" shape="rect" alt="Notifications:Port" id="areadiagram_map_nvlqt_aGAqD2ZRna_default" href="Port_rvlqt_aGAqD2ZRnY.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" docContent="&amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body style=&amp;quot;color:#000000;font-weight:normal;font-size:12px;margin-left:0;font-family:Dialog;margin-right:0;&amp;quot;&amp;gt;
+    &amp;lt;p style=&amp;quot;margin-bottom:.0001pt;margin-left:0pt;margin-top:0pt;margin-right:0pt;&amp;quot;&amp;gt;
+      Can store device tokens for login as well as providing a service for 
+      pub/sub communication between the device API service and front end to 
+      send notification of alerts which can then be retrieved. &amp;nbsp;Alerts can be 
+      stored here per device also. &amp;nbsp;Need also a list of alerting devices here 
+      too
+    &amp;lt;/p&amp;gt;
+  &amp;lt;/body&amp;gt;" coords="636, 40, 867, 223" coords2="636, 40, 867, 223" shape="rect" alt="Can store device tokens for login as well as providing a service for pub/sub communication between the device API service and front end to send notification of alerts which can then be retrieved.  Alerts can be stored here per device also.  Need also a list of alerting devices here too:Note" id="areadiagram_map_StDst_aGAqD2ZRmm_default" href="NOTE_StDst_aGAqD2ZRmn.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" coords="562, 295, 692, 335" coords2="562, 295, 692, 335" shape="rect" alt="Redis Store:Component" id="areadiagram_map_l8ast_aGAqD2ZRlO_default" href="Component_l8ast_aGAqD2ZRlP.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" docContent="&amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body style=&amp;quot;color:#000000;font-weight:normal;font-size:12px;margin-left:0;font-family:Dialog;margin-right:0;&amp;quot;&amp;gt;
+    &amp;lt;p style=&amp;quot;margin-bottom:.0001pt;margin-left:0pt;margin-top:0pt;margin-right:0pt;&amp;quot;&amp;gt;
+      Stores data from devices in round-robin archives to allow results to be 
+      fetched and graph data to be generated in the front end
+    &amp;lt;/p&amp;gt;
+  &amp;lt;/body&amp;gt;" coords="756, 518, 1039, 580" coords2="756, 518, 1039, 580" shape="rect" alt="Stores data from devices in round-robin archives to allow results to be fetched and graph data to be generated in the front end:Note" id="areadiagram_map_axVMt_aGAqD2ZRkf_default" href="NOTE_WxVMt_aGAqD2ZRkg.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" coords="936, 2, 948, 14" coords2="936, 2, 948, 14" shape="rect" alt="Device API:Port" id="areadiagram_map_xWJMt_aGAqD2ZRkW_default" href="Port__WJMt_aGAqD2ZRkU.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="411, 2, 423, 14" coords2="411, 2, 423, 14" shape="rect" alt="Admin pages:Port" id="areadiagram_map_PJqMt_aGAqD2ZRj2_default" href="Port_HJqMt_aGAqD2ZRj0.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" docContent="&amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body style=&amp;quot;color:#000000;font-weight:normal;font-size:12px;margin-left:0;font-family:Dialog;margin-right:0;&amp;quot;&amp;gt;
+    &amp;lt;p style=&amp;quot;margin-bottom:.0001pt;margin-left:0pt;margin-top:0pt;margin-right:0pt;&amp;quot;&amp;gt;
+      Ruby application using the following
+    &amp;lt;/p&amp;gt;
+    &amp;lt;p style=&amp;quot;margin-bottom:.0001pt;margin-left:0pt;margin-top:0pt;margin-right:0pt;&amp;quot;&amp;gt;
+      &amp;nbsp;
+    &amp;lt;/p&amp;gt;
+    &amp;lt;p style=&amp;quot;margin-bottom:.0001pt;margin-left:0pt;margin-top:0pt;margin-right:0pt;&amp;quot;&amp;gt;
+      - eventmachine for the web server
+    &amp;lt;/p&amp;gt;
+    &amp;lt;p style=&amp;quot;margin-bottom:.0001pt;margin-left:0pt;margin-top:0pt;margin-right:0pt;&amp;quot;&amp;gt;
+      - thin or similar web server
+    &amp;lt;/p&amp;gt;
+    &amp;lt;p style=&amp;quot;margin-bottom:.0001pt;margin-left:0pt;margin-top:0pt;margin-right:0pt;&amp;quot;&amp;gt;
+      - grape for REST API
+    &amp;lt;/p&amp;gt;
+    &amp;lt;p style=&amp;quot;margin-bottom:.0001pt;margin-left:0pt;margin-top:0pt;margin-right:0pt;&amp;quot;&amp;gt;
+      - grape-swagger for API documentation
+    &amp;lt;/p&amp;gt;
+    &amp;lt;p style=&amp;quot;margin-bottom:.0001pt;margin-left:0pt;margin-top:0pt;margin-right:0pt;&amp;quot;&amp;gt;
+      - rrd-ffi for writing sensor data to files
+    &amp;lt;/p&amp;gt;
+  &amp;lt;/body&amp;gt;" coords="867, 268, 997, 340" coords2="867, 268, 997, 340" shape="rect" alt="Ruby Device API:Component" id="areadiagram_map_xAL0t_aGAqD2ZRiw_default" href="Component_xAL0t_aGAqD2ZRix.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" docContent="&amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body style=&amp;quot;color:#000000;font-weight:normal;font-size:12px;margin-left:0;font-family:Dialog;margin-right:0;&amp;quot;&amp;gt;
+    &amp;lt;p style=&amp;quot;margin-bottom:.0001pt;margin-left:0pt;margin-top:0pt;margin-right:0pt;&amp;quot;&amp;gt;
+      Node.js application using the following tech stack
+    &amp;lt;/p&amp;gt;
+    &amp;lt;p style=&amp;quot;margin-bottom:.0001pt;margin-left:0pt;margin-top:0pt;margin-right:0pt;&amp;quot;&amp;gt;
+      &amp;nbsp;
+    &amp;lt;/p&amp;gt;
+    &amp;lt;p style=&amp;quot;margin-bottom:.0001pt;margin-left:0pt;margin-top:0pt;margin-right:0pt;&amp;quot;&amp;gt;
+      - express for HTTP support including authentication
+    &amp;lt;/p&amp;gt;
+    &amp;lt;p style=&amp;quot;margin-bottom:.0001pt;margin-left:0pt;margin-top:0pt;margin-right:0pt;&amp;quot;&amp;gt;
+      - socket.io for websockets support
+    &amp;lt;/p&amp;gt;
+    &amp;lt;p style=&amp;quot;margin-bottom:.0001pt;margin-left:0pt;margin-top:0pt;margin-right:0pt;&amp;quot;&amp;gt;
+      - rrdtool and standard file IO for reading sensor data
+    &amp;lt;/p&amp;gt;
+    &amp;lt;p style=&amp;quot;margin-bottom:.0001pt;margin-left:0pt;margin-top:0pt;margin-right:0pt;&amp;quot;&amp;gt;
+      - redis for pubsub/alerts
+    &amp;lt;/p&amp;gt;
+    &amp;lt;p style=&amp;quot;margin-bottom:.0001pt;margin-left:0pt;margin-top:0pt;margin-right:0pt;&amp;quot;&amp;gt;
+      &amp;nbsp;
+    &amp;lt;/p&amp;gt;
+    &amp;lt;p style=&amp;quot;margin-bottom:.0001pt;margin-left:0pt;margin-top:0pt;margin-right:0pt;&amp;quot;&amp;gt;
+      Session data must be encoded in the cookies, no session state will be 
+      held in the application or redis
+    &amp;lt;/p&amp;gt;
+  &amp;lt;/body&amp;gt;" coords="337, 258, 470, 340" coords2="337, 258, 470, 340" shape="rect" alt="Node JS Frontend:Component" id="areadiagram_map_gsgUt_aGAqD2ZRht_default" href="Component_gsgUt_aGAqD2ZRhu.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" coords="562, 441, 692, 503" coords2="562, 441, 692, 503" shape="rect" alt="RRD Files:Component" id="areadiagram_map_S1Tkt_aGAqD2ZRhk_default" href="Component_O1Tkt_aGAqD2ZRhl.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="2, 8, 1088, 591" coords2="2, 8, 1088, 591" shape="rect" alt="AC System:Component" id="areadiagram_map_HJSMt_aGAqD2ZRji_default" href="Component_HJSMt_aGAqD2ZRjj.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+</map>
+				</td>
+			</tr>
+		</table>
+		<p>
+		</p>
+	</div>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="Category">
+				Model Elements			</td>
+		</tr>
+		<tr>
+			<td style="height: 5px">
+			</td>
+		</tr>
+	</table>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td colSpan="4" class="TableHeaderLine">
+			</td>
+		</tr>
+		<tr>
+			<td colSpan="4" class="TableHeaderLine1">
+			</td>
+		</tr>
+		<tr class="TableHeader">
+			<td class="TableCellSpaceHolder10Px">
+			</td>
+			<td width="30%">
+<span class="TableHeaderText">Name</span>			</td>
+			<td class="TableCellSpaceHolder20Px">
+			</td>
+			<td>
+<span class="TableHeaderText">Description</span>			</td>
+		</tr>
+		<tr>
+			<td colSpan="4" class="TableHeaderLine2">
+			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Component.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Component.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="Component_O1Tkt_aGAqD2ZRhl.html" class="ItemLink">RRD Files : Component</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Component.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Component.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="Component_gsgUt_aGAqD2ZRhu.html" class="ItemLink">Node JS Frontend : Component</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"><head>
+    
+  </head>
+  <body style="color:#000000;font-weight:normal;font-size:12px;margin-left:0;font-family:Dialog;margin-right:0;">
+    <p style="margin-bottom:.0001pt;margin-left:0pt;margin-top:0pt;margin-right:0pt;">
+      Node.js application using the following tech stack
+    </p>
+    <p style="margin-bottom:.0001pt;margin-left:0pt;margin-top:0pt;margin-right:0pt;">
+      &nbsp;
+    </p>
+    <p style="margin-bottom:.0001pt;margin-left:0pt;margin-top:0pt;margin-right:0pt;">
+      - express for HTTP support including authentication
+    </p>
+    <p style="margin-bottom:.0001pt;margin-left:0pt;margin-top:0pt;margin-right:0pt;">
+      - socket.io for websockets support
+    </p>
+    <p style="margin-bottom:.0001pt;margin-left:0pt;margin-top:0pt;margin-right:0pt;">
+      - rrdtool and standard file IO for reading sensor data
+    </p>
+    <p style="margin-bottom:.0001pt;margin-left:0pt;margin-top:0pt;margin-right:0pt;">
+      - redis for pubsub/alerts
+    </p>
+    <p style="margin-bottom:.0001pt;margin-left:0pt;margin-top:0pt;margin-right:0pt;">
+      &nbsp;
+    </p>
+    <p style="margin-bottom:.0001pt;margin-left:0pt;margin-top:0pt;margin-right:0pt;">
+      Session data must be encoded in the cookies, no session state will be 
+      held in the application or redis
+    </p>
+  </body></span>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Component.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Component.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="Component_xAL0t_aGAqD2ZRix.html" class="ItemLink">Ruby Device API : Component</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"><head>
+    
+  </head>
+  <body style="color:#000000;font-weight:normal;font-size:12px;margin-left:0;font-family:Dialog;margin-right:0;">
+    <p style="margin-bottom:.0001pt;margin-left:0pt;margin-top:0pt;margin-right:0pt;">
+      Ruby application using the following
+    </p>
+    <p style="margin-bottom:.0001pt;margin-left:0pt;margin-top:0pt;margin-right:0pt;">
+      &nbsp;
+    </p>
+    <p style="margin-bottom:.0001pt;margin-left:0pt;margin-top:0pt;margin-right:0pt;">
+      - eventmachine for the web server
+    </p>
+    <p style="margin-bottom:.0001pt;margin-left:0pt;margin-top:0pt;margin-right:0pt;">
+      - thin or similar web server
+    </p>
+    <p style="margin-bottom:.0001pt;margin-left:0pt;margin-top:0pt;margin-right:0pt;">
+      - grape for REST API
+    </p>
+    <p style="margin-bottom:.0001pt;margin-left:0pt;margin-top:0pt;margin-right:0pt;">
+      - grape-swagger for API documentation
+    </p>
+    <p style="margin-bottom:.0001pt;margin-left:0pt;margin-top:0pt;margin-right:0pt;">
+      - rrd-ffi for writing sensor data to files
+    </p>
+  </body></span>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Component.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Component.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="Component_HJSMt_aGAqD2ZRjj.html" class="ItemLink">AC System : Component</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Port.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Port.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="Port_HJqMt_aGAqD2ZRj0.html" class="ItemLink">Admin pages : Port</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Port.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Port.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="Port__WJMt_aGAqD2ZRkU.html" class="ItemLink">Device API : Port</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Note.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Note.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="NOTE_WxVMt_aGAqD2ZRkg.html" class="ItemLink">N/A : Note</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"><head>
+    
+  </head>
+  <body style="color:#000000;font-weight:normal;font-size:12px;margin-left:0;font-family:Dialog;margin-right:0;">
+    <p style="margin-bottom:.0001pt;margin-left:0pt;margin-top:0pt;margin-right:0pt;">
+      Stores data from devices in round-robin archives to allow results to be 
+      fetched and graph data to be generated in the front end
+    </p>
+  </body></span>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Component.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Component.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="Component_l8ast_aGAqD2ZRlP.html" class="ItemLink">Redis Store : Component</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Note.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Note.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="NOTE_StDst_aGAqD2ZRmn.html" class="ItemLink">N/A : Note</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"><head>
+    
+  </head>
+  <body style="color:#000000;font-weight:normal;font-size:12px;margin-left:0;font-family:Dialog;margin-right:0;">
+    <p style="margin-bottom:.0001pt;margin-left:0pt;margin-top:0pt;margin-right:0pt;">
+      Can store device tokens for login as well as providing a service for 
+      pub/sub communication between the device API service and front end to 
+      send notification of alerts which can then be retrieved. &nbsp;Alerts can be 
+      stored here per device also. &nbsp;Need also a list of alerting devices here 
+      too
+    </p>
+  </body></span>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Port.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Port.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="Port_rvlqt_aGAqD2ZRnY.html" class="ItemLink">Notifications : Port</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Note.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Note.png'); background-repeat: no-repeat;">
+					</div>
+					&nbsp; <a href="NOTE_lY_qt_aGAqD2ZRox.html" class="ItemLink">N/A : Note</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"><head>
+    
+  </head>
+  <body style="color:#000000;font-weight:normal;font-size:12px;margin-left:0;font-family:Dialog;margin-right:0;">
+    <p style="margin-bottom:.0001pt;margin-left:0pt;margin-top:0pt;margin-right:0pt;">
+      Use websockets for real time alerts. &nbsp;When scaling the notifications 
+      will rely on the alerts being sent to all nodes using pub/sub.
+    </p>
+    <p style="margin-bottom:.0001pt;margin-left:0pt;margin-top:0pt;margin-right:0pt;">
+      &nbsp;
+    </p>
+    <p style="margin-bottom:.0001pt;margin-left:0pt;margin-top:0pt;margin-right:0pt;">
+      The client websocket connection also needs some form of keep-alive 
+      message so that fail-over to other nodes can be carried out by 
+      reconnecting if the current host goes down.
+    </p>
+    <p style="margin-bottom:.0001pt;margin-left:0pt;margin-top:0pt;margin-right:0pt;">
+      &nbsp;
+    </p>
+    <p style="margin-bottom:.0001pt;margin-left:0pt;margin-top:0pt;margin-right:0pt;">
+      The websocket connection does pin the client to a given node though
+    </p>
+  </body></span>			</td>
+		</tr>
+	</table>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="TableCellSpaceHolder1PxTall">
+			</td>
+		</tr>
+		<tr>
+			<td class="TableFooter">
+			</td>
+		</tr>
+	</table>
+	<div style="height: 20px">
+	</div>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="FooterLine">
+			</td>
+		</tr>
+	</table>
+	<div class="HeaderText">
+		Theorem Prototype Exercise	</div>
+</body>
+</html>
