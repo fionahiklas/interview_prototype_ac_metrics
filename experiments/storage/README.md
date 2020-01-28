@@ -22,7 +22,13 @@ rrdtool create ACUnit.rrd --start 1548677820 --step 60 \
 DS:temp:GAUGE:120:-20:60 \
 DS:humidity:GAUGE:120:0:100 \
 DS:mono:GAUGE:120:0:100 \
-RRA:LAST:0.5:1:525600
+RRA:LAST:0.5:1:525600 \
+RRA:AVERAGE:0.5:60:8760 \
+RRA:MIN:0.5:60:8760 \
+RRA:MAX:0.5:60:8760 \
+RRA:AVERAGE:0.5:1440:365 \
+RRA:MIN:0.5:1440:365 \
+RRA:MAX:0.5:1440:365 
 ```
 
 The `120` value for each data source is important, when this was set to `60` 
@@ -42,6 +48,7 @@ ruby populate.rb ACUnit.rrd 1548677820
 
 This should write a whole years worth of data
 
+
 ### Fetch data
 
 ``` 
@@ -51,6 +58,7 @@ rrdtool fetch ACUnit.rrd LAST -s 1549118460 -e 1549204860 | less
 The start point is 2019-02-02T14:41:00+00:00
 The end point is 2019-02-03T14:41:00+00:00
 
+
 ### Create a graph
 
 The start point is 2019-01-28T12:17:00+00:00
@@ -58,7 +66,7 @@ The end point is 2020-01-29T12:16:01+00:00
 
 ```
 rrdtool graph ACUnit.png -a PNG -w 1000 -h 500 --slope-mode \
--s 1548677820 -e 1580300161 -S 60s \
+-s 1548677820 -e 1580300161 -S  \
 DEF:temp=ACUnit.rrd:temp:LAST \
 DEF:humidity=ACUnit.rrd:humidity:LAST \
 DEF:mono=ACUnit.rrd:mono:LAST \
