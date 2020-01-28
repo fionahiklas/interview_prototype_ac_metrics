@@ -5,8 +5,9 @@
 Need to store time-series data and be able to write this from the ruby 
 application and read it from the node.js frontend.
 
+## RRDtool
 
-## Installing rrdtool
+### Installing rrdtool
 
 I tried compiling this myself but it has *alot* of dependencies and it was
 getting somewhat out of hand.
@@ -14,31 +15,58 @@ getting somewhat out of hand.
 Using homebrew instead.
 
 
-## Creating a database
+### Creating a database
 
 ``` 
 rrdtool create ACUnit.rrd --start 1548677820 --step 60 \
 DS:temp:GAUGE:120:-20:60 \
 DS:humidity:GAUGE:120:0:100 \
 DS:mono:GAUGE:120:0:100 \
-RRA:LAST:0.5:1:1440 \
-RRA:AVERAGE:0.5:7:1440 \
-RRA:AVERAGE:0.5:210:1440 \
-RRA:AVERAGE:0.5:2520:1440
+RRA:LAST:0.5:1:525600
 ```
 
-Fetch data
+The `120` value for each data source is important, when this was set to `60` 
+no data was registered as the timestamps were 60seconds apart anyway.  This needs
+some more tweaking.
+
+The start time represents 2019/01/28 @ 12:17pm (UTC) which is just over a year
+ago at time of writing.
+
+### Populate the database
+
+There is a Ruby script that can be used to populate the data 
 
 ``` 
-rrdtool fetch ACUnit.rrd LAST -s 1549204000 -r 60s | less
+ruby populate.rb ACUnit.rrd 1548677820
 ```
 
+This should write a whole years worth of data
 
-Create a graph
+### Fetch data
 
 ``` 
-rrdtool graph ACUnit.png -a PNG -w 1000 -h 500 --slope-mode -s 1549204000 -e 1549204860 -S 60s DEF:temp=ACUnit.rrd:temp:LAST DEF:humidity=ACUnit.rrd:humidity:LAST DEF:mono=ACUnit.rrd:mono:LAST LINE1:temp\#ff0000 LINE2:humidity:\#000000 LINE3:mono:\#0000ff
+rrdtool fetch ACUnit.rrd LAST -s 1549118460 -e 1549204860 | less
 ```
+
+The start point is 2019-02-02T14:41:00+00:00
+The end point is 2019-02-03T14:41:00+00:00
+
+### Create a graph
+
+The start point is 2019-01-28T12:17:00+00:00
+The end point is 2020-01-29T12:16:01+00:00
+
+```
+rrdtool graph ACUnit.png -a PNG -w 1000 -h 500 --slope-mode \
+-s 1548677820 -e 1580300161 -S 60s \
+DEF:temp=ACUnit.rrd:temp:LAST \
+DEF:humidity=ACUnit.rrd:humidity:LAST \
+DEF:mono=ACUnit.rrd:mono:LAST \
+LINE1:temp#0000ff:temp \
+LINE2:humidity#00ff00:humidity \
+LINE3:mono#ff0000:mono
+```
+
 
 
 ## References
