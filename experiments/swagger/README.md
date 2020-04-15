@@ -69,6 +69,10 @@ In the field for the Swagger URL paste in `http://localhost:9292/swagger_doc`
 * [Swagger UI usage](https://github.com/swagger-api/swagger-ui/blob/master/docs/usage/installation.md)
 * [Swagger UI Docker](https://github.com/swagger-api/swagger-ui/blob/master/docs/usage/configuration.md#docker)
 
+### Ruby
+
+* [Bundler](https://bundler.io/v2.0/guides/bundler_setup.html)
+
 
 ### Old
 

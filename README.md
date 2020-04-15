@@ -167,3 +167,4 @@ Will you make assumptions? Will you ask important questions? Will you prioritize
 For this type of proof of concept, we’re not looking to see if the codebase is elegant, polished and well tested. We only care about how you interact with the client and the final software you deliver at the end of the exercise.
 We hope you have fun :-) Good luck!
 ```
+

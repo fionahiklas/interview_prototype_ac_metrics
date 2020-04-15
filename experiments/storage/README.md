@@ -82,5 +82,13 @@ LINE3:mono#ff0000:mono
 * [rrdtool](https://oss.oetiker.ch/rrdtool/)
 * [Ruby rrd-ffi](https://rubygems.org/gems/rrd-ffi/versions/0.2.14)
 * [bundler](https://bundler.io/v2.0/guides/bundler_setup.html)
+* [rrd-ffi github](https://github.com/morellon/rrd-ffi/blob/master/lib/rrd/wrapper.rb)
+* [rrd tutorial](https://oss.oetiker.ch/rrdtool/tut/rrdtutorial.en.html)
+* [graph sensors with RRDTool](https://michael.bouvy.net/blog/en/2013/04/28/graph-data-rrdtool-sensors-arduino/)
+* [UNIX standard time](https://www.unixtimestamp.com/index.php)
+* [rrdfetch](https://oss.oetiker.ch/rrdtool/doc/rrdfetch.en.html)
+* [rrdgraph examples](https://oss.oetiker.ch/rrdtool/doc/rrdgraph_examples.en.html)
+
+
 
 

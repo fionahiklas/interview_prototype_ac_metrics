@@ -43,3 +43,11 @@ npm start
 * [pug](https://www.npmjs.com/package/pug)
 * [express](https://www.npmjs.com/package/express)
 
+### Bootstrap
+
+* [Components](https://getbootstrap.com/2.3.2/components.html#navbar)
+
+### Misc
+
+* [ChartJS](https://www.chartjs.org/samples/latest/charts/line/multi-axis.html)
+
