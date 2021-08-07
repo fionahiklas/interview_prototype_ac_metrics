@@ -1,6 +1,8 @@
 ## Overview
 
-Theorem prototype exercise
+This was a prototype exercise for a job interview.  The repo was previously private but I'm making it public now as there are some useful bits and pieces about RRD and Pug that others may find useful.
+
+I don't think making this public should really aid anyone in getting a job, for a start, I wasn't able to manage it with the work here so really this only serves as an example of NOT how to do things :D  I'd also expect that the company concerned has moved onto other scenarios for their interview questions by now.  And finally, the point isn't the code, it's about how you interact so this repo is still no use to you for landing a job :D 
 
 
 ## Content
